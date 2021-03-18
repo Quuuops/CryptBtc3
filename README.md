@@ -1,6 +1,6 @@
 Description of the site
 
-Lnaguages
+Languages
 
     PYTHON(DJANGO 3.1.7)
     HTML5/CSS/JAVASCRIPT(BOOTSTRAP)
