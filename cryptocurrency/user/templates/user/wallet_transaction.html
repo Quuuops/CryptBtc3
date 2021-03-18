@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Перевод : {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<h1>Перевод на кошелек</h1>
+<form class="WalletTransaction" action="{% url 'wallet_transaction' %}" method="post">
+    {% csrf_token %}
+    <select name="crypt_from" id="crypt_from" required>
+        <option value="0" selected disabled>Выберите валюту отправителя</option>
+        {% for obj in objectlist %}
+        <option value="{{ obj.id }}">{{ obj.name_crypt }} </option>
+        {% endfor %}
+    </select>
+    {{ form.as_p }}
+        <select name="crypt_to" id="crypt_to" required>
+            <option value="0" selected disabled>Выберите валюту получателя</option>
+            {% for obj in objectlist %}
+            <option value="{{ obj.id }}">{{ obj.name_crypt }} </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="btn btn-primary btn-block">Отправить</button>
+    </form>
+    {% endblock %}

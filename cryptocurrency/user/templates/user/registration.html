@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Регистрация : {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+
+<h1>Регистрация</h1>
+ <form class="UserRegistrationForm" action="{% url 'registration' %}" method="post">
+     {% csrf_token %}
+     {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
+</form>
+{% endblock %}
+

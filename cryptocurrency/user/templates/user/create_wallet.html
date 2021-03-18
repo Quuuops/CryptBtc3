@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Cоздание кошелька : {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<h1>Регистрация вашего кошелька</h1>
+ <form class="CreateCryptoWallet" action="{% url 'create_wallet' %}" method="post">
+     {% csrf_token %}
+     <select name="cryptocurrency" id="crypt" required>
+                <option value="0" selected disabled>Выберите валюту</option>
+                {% for obj in objectlist %}
+                <option value="{{ obj.id }}">{{ obj.name_crypt }} </option>
+                {% endfor %}
+            </select>
+
+     <button type="submit" class="btn btn-primary btn-block">Создать</button>
+</form>
+{% endblock %}

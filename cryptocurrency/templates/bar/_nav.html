@@ -1,0 +1,87 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static '/image/cryptos.jpeg' %}" alt="" width="50" height="45" class="d-inline-block align-top">
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav2">
+    <ul class="navbar-nav">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <a class="btn btn-secondary" aria-current="page" href="{% url 'home' %}">Главная</a>
+        <a class="btn btn-secondary" aria-current="page" href="{% url 'api_crypt' %}">Курс</a>
+        {% if request.user.is_authenticated %}
+
+        <a class="btn btn-secondary" aria-current="page" href="{% url 'create_wallet' %}">Кошелек</a>
+
+      </div>
+
+      <div class="btn-group">
+        <a type="button"  href="{% url 'buy_crypt' %}" class="btn btn-secondary">Покупка</a>
+        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu " >
+          <a class="dropdown-item" href="{% url 'sell_crypt' %}">Продажа</a>
+          <a class="dropdown-item" href="{% url 'wallet_transaction' %}">Перевод</a>
+        </div>
+      </div>
+      {% endif %}
+    </ul>
+  </div>
+
+  <input class="form-control me-3" type="search" placeholder="Поиск" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Поиск</button>
+  <form class="d-flex">
+    {% if request.user.is_authenticated %}
+
+    <a class="nav-link active" aria-current="page" ></a>
+    <ul class="navbar-nav">
+
+      {% if user.profile.avatar %}
+      <img id="avatar1" src="{{ user.profile.avatar.url }}" width="45" height="40" class="rounded-circle float-left">
+      {% else %}
+      <img src="{% static '/image/users/anon.png' %}"  alt="" width="45" height="40" >
+      {% endif %}
+      <li class="nav-item">
+        <div class="collapse navbar-collapse" id="navbarNav">
+                        <a class="btn btn-secondary" aria-current="page" href="{% url 'user_account' user.id %}">Профиль</a>
+
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+            <div class="dropdown-menu " >
+              <a class="dropdown-item" href="{% url 'transaction' %}">Мои транзакции</a>
+            </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+              Настройки
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'change_data' %}">Редактировать данные</a>
+              <a class="dropdown-item" href="{% url 'change_password' %}">Смена пароля</a>
+              <a class="dropdown-item" href="#">Поддежка</a>
+
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    {% else %}
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <a class="btn btn-secondary" aria-current="page" href="{% url 'registration' %}">Регистрация</a>
+      <a class="btn btn-secondary" href="{% url 'authentication' %}">Авторизация</a>
+    </div>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'Logout' %}">Выход</a>
+      </li>
+    </ul>
+    {% endif %}
+  </form>
+</nav>
+

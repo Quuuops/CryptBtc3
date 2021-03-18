@@ -1,0 +1,20 @@
+body {
+    background-image: url("image/wall.png");
+}
+h1 {
+color:green;
+}
+#avatar1{
+  display: block;
+    margin: 0 auto;
+
+}
+#menu{
+padding-right: 100px;}
+div[class="row"] {
+    border: 1px dotted rgba(0, 0, 0, 0.5);
+}
+
+div[class^="col-"] {
+    background-color: rgba(255, 0, 0, 0.2);
+}

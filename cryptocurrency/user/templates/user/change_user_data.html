@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Изменить данные : {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<h1>Изменение данных</h1>
+  <form class="ChangeUserData" action="{% url 'change_data' %}" method="post">
+     {% csrf_token %}
+      <p>Имя</p>
+      <input type="text"  name="name" size="50%" maxlength="50" value="{{ user.first_name}}" >
+            <p>Фамилия</p>
+
+      <input type="text" name="surname" size="50%" maxlength="50" value="{{ user.last_name }}" >
+            <p>Email</p>
+
+      <input type="text" name="email" size="50%" maxlength="50" value="{{ user.email }}" >
+
+    <button type="submit" class="btn btn-primary btn-block">Изменить</button>
+</form>
+{% endblock %}

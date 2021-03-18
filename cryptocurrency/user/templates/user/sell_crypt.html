@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Продажа : {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<h1>Продажа</h1>
+ <form class="SellCrypt" action="{% url 'sell_crypt' %}" method="post">
+     {% csrf_token %}
+     <select name="crypt_id" id="crypt" required>
+                <option value="0" selected disabled>Выберите валюту</option>
+                {% for obj in objectlist %}
+                <option value="{{ obj.id }}">{{ obj.name_crypt }} </option>
+                {% endfor %}
+            </select>
+          {{ form.as_p }}
+
+
+     <button type="submit" class="btn btn-primary btn-block">Продать</button>
+</form>
+{% endblock %}
